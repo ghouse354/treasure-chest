@@ -60,6 +60,8 @@ public class CSVLogger {
                 mLogFile = Paths.get(mLogFolder, "test.csv");
             }
 
+            System.out.println("Creating CSV Log at " + mLogFile.toString());
+
             if (Files.exists(mLogFile)) {
                 Files.delete(mLogFile);
             }

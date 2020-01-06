@@ -80,6 +80,8 @@ public class EventLog {
                 sLogFile = Paths.get(sLogFolder, "testEvents.txt");
             }
 
+            System.out.println("Creating Event Log at " + sLogFile.toString());
+
             if (Files.exists(sLogFile)) {
                 Files.delete(sLogFile);
             }
