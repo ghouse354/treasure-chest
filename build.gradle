@@ -10,8 +10,10 @@ plugins {
     // Apply the java-library plugin to add support for Java Library
     id 'java-library'
     id "edu.wpi.first.GradleRIO" version "2020.1.2"
-    id "maven-publish"
+    id "maven"
 }
+
+group = "com.ghouse354"
 
 repositories {
     // Use jcenter for resolving dependencies.
