@@ -14,6 +14,7 @@ import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
 import edu.wpi.first.wpilibj.DriverStation;
+import edu.wpi.first.wpilibj.RobotBase;
 
 public class CSVLogger {
     private static CSVLogger sInstance = new CSVLogger();
@@ -26,9 +27,16 @@ public class CSVLogger {
     private String mLogFolder = "/home/lvuser/logs/";
 
     private CSVLogger() {
-        File usbLocation = new File("/media/sda1/");
-        if (usbLocation.exists()) {
-            mLogFolder = "/media/sda1/logs/";
+        if (RobotBase.isSimulation()) {
+            String sysTempDir = System.getProperty("java.io.tmpdir");
+            mLogFolder = Paths.get(sysTempDir, "ghouse354-logs").toString();
+            System.out.println("Running in simulation mode. Using local temp directory: " + mLogFolder);
+        }
+        else {
+            File usbLocation = new File("/media/sda1/");
+            if (usbLocation.exists()) {
+                mLogFolder = "/media/sda1/logs/";
+            }
         }
     }
 

@@ -12,6 +12,7 @@ import java.util.Queue;
 
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Notifier;
+import edu.wpi.first.wpilibj.RobotBase;
 
 public class EventLog {
     private static EventLog sInstance = new EventLog();
@@ -29,11 +30,18 @@ public class EventLog {
     private static final Notifier sLogPeriodic = new Notifier(new LogWriter());
 
     public void startLogging() {
-        // Detect USB drive. If we find one, we can record to it. Otherwise,
-        // Save logs on the roboRIO
-        File usbLocation = new File("/media/sda1/");
-        if (usbLocation.exists()) {
-            sLogFolder = "/media/sda1/logs/";
+        if (RobotBase.isSimulation()) {
+            String sysTempDir = System.getProperty("java.io.tmpdir");
+            sLogFolder = Paths.get(sysTempDir, "ghouse354-logs").toString();
+            System.out.println("Running in simulation mode. Using local temp directory: " + sLogFolder);
+        }
+        else {
+            // Detect USB drive. If we find one, we can record to it. Otherwise,
+            // Save logs on the roboRIO
+            File usbLocation = new File("/media/sda1/");
+            if (usbLocation.exists()) {
+                sLogFolder = "/media/sda1/logs/";
+            }
         }
         createLogFile();
 
