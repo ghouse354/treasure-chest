@@ -71,13 +71,13 @@ public class EventLog {
         try {
             createLogFolder();
             if (DriverStation.getInstance().isFMSAttached()) {
-                sLogFile = Paths.get(sLogFolder +
+                sLogFile = Paths.get(sLogFolder,
                                     DriverStation.getInstance().getEventName() + "_" +
                                     DriverStation.getInstance().getMatchType() +
                                     DriverStation.getInstance().getMatchNumber() + "Events.txt");
             }
             else {
-                sLogFile = Paths.get(sLogFolder + "testEvents.txt");
+                sLogFile = Paths.get(sLogFolder, "testEvents.txt");
             }
 
             if (Files.exists(sLogFile)) {

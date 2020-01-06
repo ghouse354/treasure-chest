@@ -51,13 +51,13 @@ public class CSVLogger {
         try {
             createLogFolder();
             if (DriverStation.getInstance().isFMSAttached()) {
-                mLogFile = Paths.get(mLogFolder +
+                mLogFile = Paths.get(mLogFolder,
                                     DriverStation.getInstance().getEventName() + "_" +
                                     DriverStation.getInstance().getMatchType() +
                                     DriverStation.getInstance().getMatchNumber() + ".csv");
             }
             else {
-                mLogFile = Paths.get(mLogFolder + "test.csv");
+                mLogFile = Paths.get(mLogFolder, "test.csv");
             }
 
             if (Files.exists(mLogFile)) {
