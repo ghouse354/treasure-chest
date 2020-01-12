@@ -1,4 +1,4 @@
-package com.ghouse354.logging;
+package com.ghouse354.treasurechest.logging;
 
 import java.io.File;
 import java.io.IOException;
